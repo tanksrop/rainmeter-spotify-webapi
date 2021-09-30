@@ -13,7 +13,7 @@ You will need python from https://www.python.org/downloads/ if you don't already
 
 
 ### Initial setup:
-The first thing that you will need to do after installing the rainmeter skin is to run the initial setup script by clicking on the progress bar, you should only have to do this once
+The first thing that you will need to do after installing the rainmeter skin is to run the initial setup script by clicking on the progress bar, which will walk you through the setup, you should only have to do this once
 
 ### Usage:
 
