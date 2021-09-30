@@ -1,3 +1,4 @@
 @echo off
-CD %HOMEPATH%\Documents\Rainmeter\Skins\spotify-webapi
-pythonw %HOMEPATH%\Documents\Rainmeter\Skins\spotify-webapi\main.py
+set rootconfig = %1
+CD %rootconfig%
+python .\start.py

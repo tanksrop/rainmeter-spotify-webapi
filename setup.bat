@@ -1,3 +1,5 @@
 @echo off
-CD %HOMEPATH%\Documents\Rainmeter\Skins\spotify-webapi
-python %HOMEPATH%\Documents\Rainmeter\Skins\spotify-webapi\setup.py
+pip install requests PySide2
+set rootconfig = %1
+CD %rootconfig%
+python .\setup.py

@@ -45,6 +45,7 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
        
         if reason == self.DoubleClick:
             print("Exiting")
+            a.close()
             sys.exit(app.exec_())
 
 app = QtWidgets.QApplication(sys.argv)
