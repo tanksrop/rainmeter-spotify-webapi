@@ -3,12 +3,15 @@ import time
 import sys
 import json
 from PySide2 import QtWidgets, QtGui
+from multiprocessing import Process
 
 importantinfo = json.load(open('importantinfo.json', 'r'))
 
 spotify_user_id = importantinfo["user_id"]
 refresh_token = importantinfo["refresh_token"]
 base_64 = importantinfo["base_64"]
+refreshtimer = 1
+sleeptime = 1
 
 def now_playing():
     global response_json
@@ -47,58 +50,68 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
 app = QtWidgets.QApplication(sys.argv)
 w = QtWidgets.QWidget()
 tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"), w)
-tray_icon.show()
 
+def main_loop():
+    refresh()
+    while True:
+        try:
+            time.sleep(sleeptime)
+            
+            now_playing()
+            image = (response_json['item']['album']['images'][0]['url'])       #grabs image url
 
-refresh()
-refreshtimer = 1
-sleeptime = 1
+            album = (response_json['item']['album']['name'])                   #grabs album name
 
-while True:
-    try:
-        time.sleep(sleeptime)
-        
-        now_playing()
-        image = (response_json['item']['album']['images'][0]['url'])       #grabs image url
+            song_name = (response_json['item']['name'])                        #grabs song name
 
-        album = (response_json['item']['album']['name'])                   #grabs album name
+            progress = ((response_json['progress_ms'])/60000)                  #progress in mins
 
-        song_name = (response_json['item']['name'])                        #grabs song name
+            length = ((response_json['item']['duration_ms'])/60000)            #grab time in mins
 
-        progress = ((response_json['progress_ms'])/60000)                  #progress in mins
+            artists = []                                                            #grab artist's names
+            for name in response_json['item']['artists']:
+                artists.append(name['name'])
 
-        length = ((response_json['item']['duration_ms'])/60000)            #grab time in mins
+            info = {
+                "image": image ,
+                "album": album,
+                "song_name": song_name, 
+                "progress": progress,  
+                "length": length, 
+                "artists": ", ".join(artists)
+                }
+            jsonString = json.dumps(info, indent=0)
 
-        artists = []                                                            #grab artist's names
-        for name in response_json['item']['artists']:
-            artists.append(name['name'])
+            #print(valid_jonson)
 
-        info = {
-            "image": image ,
-            "album": album,
-            "song_name": song_name, 
-            "progress": progress,  
-            "length": length, 
-            "artists": ", ".join(artists)
-            }
-        jsonString = json.dumps(info, indent=0)
+            log_file = open("output","w")
 
-        #print(valid_jonson)
+            sys.stdout = log_file
 
-        log_file = open("output","w")
+            print(jsonString)
 
-        sys.stdout = log_file
+            sys.stdout = sys.__stdout__
 
-        print(jsonString)
+            log_file.close()
 
-        sys.stdout = sys.__stdout__
+            if(refreshtimer == 300/sleeptime):
+                refresh
+                refreshtimer = 1
+            refreshtimer = refreshtimer + 1
+            
+        except:
+            pass
 
-        log_file.close()
+def quit_thing():
+    tray_icon.show()
+    app.exec_()
 
-        if(refreshtimer == 300/sleeptime):
-            refresh
-            refreshtimer = 1
-        refreshtimer = refreshtimer + 1
-        app.exec_()
-    except:
-        pass
+if __name__ == '__main__':
+    a = Process(target=main_loop)
+    b = Process(target=quit_thing)
+    a.start()
+    b.start()
+    b.join()
+    
+    
+    
