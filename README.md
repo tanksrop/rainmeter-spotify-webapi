@@ -1,5 +1,6 @@
 # rainmeter-spotify-webapi
-no clue how to do this readme lol
+<h1>You will need python, make sure to check add python to path when installing </h1>
+https://www.python.org/downloads/
 <h1>Basic Usage</h1>
 So far the main things you need to know about are:<br /><br />
 1).Press the progress bar to start initial setup (one time thing)<br /><br />
