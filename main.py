@@ -45,7 +45,6 @@ class SystemTrayIcon(QtWidgets.QSystemTrayIcon):
        
         if reason == self.DoubleClick:
             print("Exiting")
-            a.close()
             sys.exit(app.exec_())
 
 app = QtWidgets.QApplication(sys.argv)
@@ -99,7 +98,9 @@ def main_loop():
                 refresh
                 refreshtimer = 1
             refreshtimer = refreshtimer + 1
-            
+            if(b.is_alive() != False):
+                sys.exit()
+    
         except:
             pass
 
@@ -110,6 +111,7 @@ def quit_thing():
 if __name__ == '__main__':
     a = Process(target=main_loop)
     b = Process(target=quit_thing)
-    a.start()
     b.start()
+    a.start()
     b.join()
+    a.terminate()
