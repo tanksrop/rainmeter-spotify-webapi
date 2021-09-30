@@ -5,6 +5,7 @@ import requests
 import sys
 import json
 import re
+import os
 
 def b64():
     global base_64
@@ -27,27 +28,33 @@ def auth():
         refresh_token = response.json()['refresh_token']
 
 
-print("head over to https://developer.spotify.com/dashboard/applications and make an app")
-print("the app name and description can be anyting you want")
-print("then to click edit settings and put   https://127.0.0.1/   exactly as written, including the last / as a redirect url on your app's dashboard")
-print("then click save")
-input("press enter to continue")
-
+print("Head over to https://developer.spotify.com/dashboard/applications and make an app \n")
+print("The app name and description can be anyting you want\n")
+print("Then to click edit settings and put   https://127.0.0.1/   exactly as written, including the last / as a redirect url on your app's dashboard\n")
+print("Then click save\n\n")
+input("Press enter to continue")
+os.system('cls' if os.name == 'nt' else 'clear')
+print("To get the link to your profile, open the drop down menu in the top left of your spotify client")
+print("\nThen you will need to click profile")
+print("\nThen right click your name and click copy link to profile\n")
 linktoprofile = input("Enter link to your profile : ")
-
+os.system('cls' if os.name == 'nt' else 'clear')
 linktoprofile2 = re.sub("\?si=.*","", linktoprofile)
 user_id = re.sub("https:\/\/open.spotify.com\/user\/","", linktoprofile2)
 
-client_id = input("Enter Client ID : ")
 
-client_secret = input("Enter client secret : ")
+client_id = input("Enter Client ID from your dashboard app: ")
 
+client_secret = input("Enter client secret from your dashboard app: ")
+os.system('cls' if os.name == 'nt' else 'clear')
 b64()
 
 authurl = ("https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=code&redirect_uri=https%3A%2F%2F127.0.0.1%2F&scope=user-read-playback-state")
 
-print("it will say 'unable to connect' after loggin in, this is fine and normal")
-input("press enter to load the page")
+print("It will now open a website asking for you to login\n")
+print("It will say 'unable to connect' after loggin in, this is fine and normal\n")
+print("after loggin in, you will need to copy the link it redirects you to here\n")
+input("Press enter to load the page")
 
 webbrowser.open(authurl, new=2)
 
