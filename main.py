@@ -99,5 +99,6 @@ while True:
             refresh
             refreshtimer = 1
         refreshtimer = refreshtimer + 1
+        app.exec_()
     except:
         pass
