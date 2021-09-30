@@ -1,5 +1,5 @@
 # rainmeter-spotify-webapi
-no clue how to do this lol
+no clue how to do this readme lol
 <h1>Basic Usage</h1>
 So far the main things you need to know about are:
 Press the progress bar to start initial setup (one time thing)
