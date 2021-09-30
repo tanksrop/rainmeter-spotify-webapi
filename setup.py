@@ -28,7 +28,8 @@ def auth():
 
 
 print("head over to https://developer.spotify.com/dashboard/applications and make an app")
-print("then to click edit settings and put 'https://127.0.0.1/' as a redirect url on your app's dashboard")
+print("the app name and description can be anyting you want")
+print("then to click edit settings and put   https://127.0.0.1/   exactly as written, including the last / as a redirect url on your app's dashboard")
 print("then click save")
 input("press enter to continue")
 
@@ -45,9 +46,12 @@ b64()
 
 authurl = ("https://accounts.spotify.com/authorize?client_id=" + client_id + "&response_type=code&redirect_uri=https%3A%2F%2F127.0.0.1%2F&scope=user-read-playback-state")
 
+print("it will say 'unable to connect' after loggin in, this is fine and normal")
+input("press enter to load the page")
+
 webbrowser.open(authurl, new=2)
 
-code = input("Enter the entire url after loggin in : ")
+code = input("Enter the entire url of the page after loggin in : ")
 
 code = re.sub("https:\/\/127.0.0.1\/\?code=", "", code)
 
