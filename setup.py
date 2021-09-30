@@ -27,7 +27,7 @@ def auth():
 
         refresh_token = response.json()['refresh_token']
 
-
+os.system('cls' if os.name == 'nt' else 'clear')
 print("Head over to https://developer.spotify.com/dashboard/applications and make an app \n")
 print("The app name and description can be anyting you want\n")
 print("Then to click edit settings and put   https://127.0.0.1/   exactly as written, including the last / as a redirect url on your app's dashboard\n")
