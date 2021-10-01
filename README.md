@@ -7,10 +7,13 @@ A python based rainmeter skin that pulls data from spotify's webapi, meaning no 
 ## Usage Instructions:
 
 ### Dependencies:
-You will need python from https://www.python.org/downloads/ if you don't already have it, make sure to check add python to path when installing
+#### You will need python from https://www.python.org/downloads/ if you don't already have it, make sure to check add python to path when installing
 
 ![image](https://user-images.githubusercontent.com/76452125/135522859-19758048-7319-4f42-866e-1d0e4a7b9773.png)
 
+#### You also need to install MagickMeter as shown here:
+
+https://github.com/khanhas/MagickMeter#how-to-install
 
 ### Initial setup:
 For an in depth installation and setup guide, go to https://github.com/tanksrop/rainmeter-spotify-webapi/wiki/Installation
