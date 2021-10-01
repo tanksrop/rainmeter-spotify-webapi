@@ -1,6 +1,7 @@
 import requests
 import time
 import sys
+import os
 import json
 from PySide2 import QtWidgets, QtGui
 from multiprocessing import Process
@@ -13,14 +14,22 @@ base_64 = importantinfo["base_64"]
 refreshtimer = 1
 sleeptime = 1
 
+PIDFILE = 'isrunning.pid'
+
 def now_playing():
     global response_json
     query = "https://api.spotify.com/v1/me/player/currently-playing"
     response = requests.get(query, headers={"Content-Type": "application/json",
                                             "Authorization": "Bearer {}".format(token)})
     response_json = response.json()
-    print(response)
 
+def is_running():
+    try:
+        with open(PIDFILE) as f:
+            pid = int(next(f))
+        return os.kill(pid, 0)
+    except Exception:
+        return False
 
 def refresh():
     global token
@@ -106,9 +115,14 @@ def main_loop():
 
 def quit_thing():
     tray_icon.show()
+    if is_running():
+        sys.exit()
+    with open(PIDFILE, 'w') as f:
+        f.write(f'{os.getpid()}\n')
     app.exec_()
 
 if __name__ == '__main__':
+
     a = Process(target=main_loop)
     b = Process(target=quit_thing)
     b.start()
