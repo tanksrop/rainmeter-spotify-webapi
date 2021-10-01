@@ -27,6 +27,5 @@ If you want to stop the python script for whatever reason, you can do so by doub
 
 ![image](https://user-images.githubusercontent.com/76452125/135521849-e46362be-6d6d-41ea-8fc9-390f7cf59561.png)
 
-## Make sure to only run one instance of the main script, as running multiple can lead to being rate limited or just flat out blocked from using the api for a certain amount of time
 
 
