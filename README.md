@@ -15,13 +15,12 @@ You will need python from https://www.python.org/downloads/ if you don't already
 ### Initial setup:
 For an in depth installation and setup guide, go to https://github.com/tanksrop/rainmeter-spotify-webapi/wiki/Installation
 
-The first thing that you will need to do after installing the rainmeter skin is to run the initial setup script by clicking on the progress bar, which will walk you through the setup, you should only have to do this once
-
 ### Usage:
 
-After running the initial setup script, you can run the main script by clicking on the cover photo
+After doing the initial setup, you will need to refresh the skin by right clicking and clicking refresh
 
-Due to limitations of the batch script, you will need to close the window that pops up when running the main script don't worry though, it will still run in the background
+![image](https://user-images.githubusercontent.com/76452125/135638384-974d304d-12fa-4e66-a803-cd1ffc299cfb.png)
+
 
 If you want to stop the python script for whatever reason, you can do so by double clicking on the tray icon
 
