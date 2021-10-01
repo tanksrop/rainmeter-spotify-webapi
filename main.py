@@ -91,7 +91,7 @@ def main_loop():
                 "length": length, 
                 "artists": ", ".join(artists)
                 }
-            jsonString = json.dumps(info, indent=0)
+            jsonString = json.dumps(info, ensure_ascii=True, indent=0)
 
             #print(valid_jonson)
 
@@ -105,6 +105,7 @@ def main_loop():
                     with open("DownloadFile\cover.png",'wb') as f:
                         shutil.copyfileobj(r.raw, f)
                         image2 = image
+
 
 
             log_file = open("output","w")
