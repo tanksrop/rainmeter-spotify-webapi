@@ -5,6 +5,7 @@ import os
 import json
 from PySide2 import QtWidgets, QtGui
 from multiprocessing import Process
+import shutil
 
 importantinfo = json.load(open('importantinfo.json', 'r'))
 
@@ -62,6 +63,7 @@ tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"), w)
 
 def main_loop():
     refresh()
+    image2 = ""
     while True:
         try:
             time.sleep(sleeptime)
@@ -92,6 +94,18 @@ def main_loop():
             jsonString = json.dumps(info, indent=0)
 
             #print(valid_jonson)
+
+            if(image2 != image):
+                
+                r = requests.get(image, stream = True)
+
+                if(r.status_code == 200):
+                    r.raw.decode_content = True
+
+                    with open("DownloadFile\cover.png",'wb') as f:
+                        shutil.copyfileobj(r.raw, f)
+                        image2 = image
+
 
             log_file = open("output","w")
 
