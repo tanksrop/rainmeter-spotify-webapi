@@ -126,6 +126,10 @@ def main_loop():
                 sys.exit()
     
         except:
+            if(refreshtimer == 300/sleeptime):
+                refresh
+                refreshtimer = 1
+            refreshtimer = refreshtimer + 1
             pass
 
 def quit_thing():
