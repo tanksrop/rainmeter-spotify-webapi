@@ -12,7 +12,6 @@ importantinfo = json.load(open('importantinfo.json', 'r'))
 spotify_user_id = importantinfo["user_id"]
 refresh_token = importantinfo["refresh_token"]
 base_64 = importantinfo["base_64"]
-refreshtimer = 1
 sleeptime = 1
 
 PIDFILE = 'isrunning.pid'
@@ -23,7 +22,8 @@ def now_playing():
     response = requests.get(query, headers={"Content-Type": "application/json",
                                             "Authorization": "Bearer {}".format(token)})
     response_json = response.json()
-
+    print(response)
+    
 def is_running():
     try:
         with open(PIDFILE) as f:
@@ -63,10 +63,16 @@ tray_icon = SystemTrayIcon(QtGui.QIcon("icon.png"), w)
 
 def main_loop():
     refresh()
+    refreshtimer = 1
     image2 = ""
     while True:
         try:
             time.sleep(sleeptime)
+
+            if(refreshtimer == 300/sleeptime):
+                refresh()
+                refreshtimer = 1
+            refreshtimer = refreshtimer + 1
             
             now_playing()
             image = (response_json['item']['album']['images'][0]['url'])       #grabs image url
@@ -79,7 +85,7 @@ def main_loop():
 
             length = ((response_json['item']['duration_ms'])/60000)            #grab time in mins
 
-            artists = []                                                            #grab artist's names
+            artists = []                                                       #grab artist's names
             for name in response_json['item']['artists']:
                 artists.append(name['name'])
 
@@ -118,16 +124,12 @@ def main_loop():
 
             log_file.close()
 
-            if(refreshtimer == 300/sleeptime):
-                refresh
-                refreshtimer = 1
-            refreshtimer = refreshtimer + 1
             if(b.is_alive() != False):
                 sys.exit()
     
         except:
             if(refreshtimer == 300/sleeptime):
-                refresh
+                refresh()
                 refreshtimer = 1
             refreshtimer = refreshtimer + 1
             pass
