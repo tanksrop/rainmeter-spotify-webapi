@@ -2,6 +2,8 @@
 A python based rainmeter skin that pulls data from spotify's webapi, meaning no more need to mod spotify
 
 ![image](https://user-images.githubusercontent.com/76452125/135711415-f300562a-f226-440b-87f5-7277542d6876.png)
+![image](https://user-images.githubusercontent.com/76452125/135760840-243681ac-d12e-4595-97f6-e5d998165aa8.png)
+
 
 ## Dependencies:
 #### You will need python from https://www.python.org/downloads/ if you don't already have it, make sure to check add python to path when installing
