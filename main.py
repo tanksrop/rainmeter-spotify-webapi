@@ -23,7 +23,7 @@ def now_playing():
                                             "Authorization": "Bearer {}".format(token)})
     response_json = response.json()
     print(response)
-    
+
 def is_running():
     try:
         with open(PIDFILE) as f:
