@@ -143,7 +143,8 @@ def quit_thing():
     app.exec_()
 
 if __name__ == '__main__':
-
+    sys.argv = ['main.py']
+    multiprocessing.set_executable('C:/Python31/python.exe')
     a = Process(target=main_loop)
     b = Process(target=quit_thing)
     b.start()
