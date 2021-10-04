@@ -144,6 +144,7 @@ def quit_thing():
 
 if __name__ == '__main__':
 
+    sys.argv = ['main.py']
     a = Process(target=main_loop)
     b = Process(target=quit_thing)
     b.start()
