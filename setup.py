@@ -33,7 +33,11 @@ print("Head over to https://developer.spotify.com/dashboard/applications and mak
 print("The app name and description can be anyting you want\n")
 print("Then to click edit settings and put   https://127.0.0.1/   exactly as written, including the last / as a redirect url on your app's dashboard\n")
 print("Then click save\n\n")
-input("Press enter to continue")
+input("Press enter to automatically open the site")
+
+webbrowser.open("https://developer.spotify.com/dashboard/applications", new=2)
+
+input("\n\npress enter again to continue to the next step")
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
